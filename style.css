@@ -1,3 +1,14 @@
 h1 {
     text-align: center;
 }
+
+
+
+.container{
+    display: inline-flex;
+    flex-direction: column;
+    height: 24%;
+    width: 14%;
+    color: rgb(0, 0, 0)
+
+  }
