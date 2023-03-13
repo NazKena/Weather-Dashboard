@@ -1,40 +1,37 @@
+
 const apiKey = "4e4c78c92a3432f093e8952d80ccf977";
 // here we have the api URL //
 
 const base =
-`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&` +
-`lon=${lon}&appid=4e4c78c92a3432f093e8952d80ccf977
+` https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}4e4c78c92a3432f093e8952d80ccf977
 `;
 
 // here we are calling th api //
 
-fetch(base)
-        .then((response) => {
+function getForecast(city){
+    var apiUrl =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      city +
+      "&appid=" + apiKey + "&units=imperial";
+      fetch(apiUrl)
+      .then(function (response) {
+        if (response.ok) {
           return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          temperature.textContent = 
-              Math.floor(data.main.temp - kelvin) + "°C";
-          summary.textContent = data.weather[0].description;
-          loc.textContent = data.name + "," + data.sys.country;
-     })
+        }
+      })
+      .then(function (data) {
+        currentForecast(data);
+        fiveDayforecast(data);
+        if("" === $("#search-input").val()){
+          return 
+        }else{
+          SavingCitiesStorage(city)
+        }
+        displayCitySearch (city);
+      });
+  }
 
 
-
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  let inputVal = input.value;
-
-let NowMoment = moment().format("l");
-
-let day1 = moment().add(1, "days").format("l");
-let day2 = moment().add(2, "days").format("l");
-let day3 = moment().add(3, "days").format("l");
-let day4 = moment().add(4, "days").format("l");
-let day5 = moment().add(5, "days").format("l");
-
-})
 
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
 function forecast(cityid){
@@ -62,4 +59,30 @@ function forecast(cityid){
     });
 }
 
+// Here we have local storage //
 
+function SavingCitiesStorage(city){
+
+    if (localStorage.getItem('city') === null){
+      localStorage.setItem('city', JSON.stringify([city]))
+    }
+    else{
+    var citySearched = JSON.parse(localStorage.getItem('city'))
+    citySearched.push(city)
+    localStorage.setItem('city', JSON.stringify(citySearched))
+    }
+  }
+  
+  function displayCitySearch (city){
+    searchedCityContainer.innerHTML=""
+  let getCity = JSON.parse(localStorage.getItem('city'))
+  if(getCity){
+    for (let i = 0; i < getCity.length; i++) {
+      let cityList = document.createElement("button")  
+      cityList.setAttribute("class", "cityButton")
+      searchedCityContainer.appendChild(cityList)
+      cityList.innerHTML = getCity[i]
+      cityList.onclick=cityClick
+    }
+  }
+  }
