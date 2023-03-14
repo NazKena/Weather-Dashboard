@@ -1,3 +1,8 @@
+const CURRENT_LOCATION = document.getElementsByClassName('city')[0];
+const CURRENT_TEMP = document.getElementsByClassName('add')[0];
+const FORECAST = document.getElementsByClassName('forecast')[0];
+
+
 const apiKey = "4e4c78c92a3432f093e8952d80ccf977";
 // here we have the api URL //
 
@@ -5,9 +10,21 @@ const base =
 'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=4e4c78c92a3432f093e8952d80ccf977'
 // here we are calling th api //
 
+
+function getWeatherData() {
+  let headers = new Headers();
+
+  return fetch(URL, {
+    method: 'GET',
+    headers: headers
+  }).then(data => {
+    return data.json();
+  });
+}
+
 function getForecast(city){
     var apiUrl =
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      "https://api.openweathermap.org/data/2.5/forecast?q=" +
       city +
       "&appid=" + apiKey + "&units=imperial";
       fetch(apiUrl)
@@ -28,7 +45,34 @@ function getForecast(city){
       });
   }
 
+renderData = (location, forecast) => {
+  const currentWeather = forecast[0].weather[0];
+  const widgetHeader =
+  `<h1>${location}</h1><small>${currentWeather.description}</small>`;
 
+  CURRENT_TEMP.innerHTML =
+  `<i class="wi ${applyIcon(currentWeather.icon)}"></i>
+  ${Math.round(forecast[0].temp.day)} <i class="wi wi-degrees"></i>`;
+
+  CURRENT_LOCATION.innerHTML = widgetHeader;
+
+  // Here we have the forecast for each day // 
+
+  forecast.forEach(day => {
+    let date = new Date(day.dt * 1000);
+    let days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    let name = days[date.getDay()];
+    let dayBlock = document.createElement("div");
+    dayBlock.className = 'forecast__item';
+    dayBlock.innerHTML =
+      `<div class="forecast-item__heading">${name}</div>
+      <div class="forecast-item__info">
+      <i class="wi ${applyIcon(day.weather[0].icon)}"></i>
+      <span class="degrees">${Math.round(day.temp.day)}
+      <i class="wi wi-degrees"></i></span></div>`;
+    FORECAST.appendChild(dayBlock);
+  });
+}
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
 function forecast(cityid){
     var dayover= false;
