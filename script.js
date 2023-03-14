@@ -58,23 +58,7 @@ renderData = (location, forecast) => {
 
   // Here we have the forecast for each day // 
 
-  forecast.forEach(day => {
-    let date = new Date(day.dt * 1000);
-    let days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-    let name = days[date.getDay()];
-    let dayBlock = document.createElement("div");
-    dayBlock.className = 'forecast__item';
-    dayBlock.innerHTML =
-      `<div class="forecast-item__heading">${name}</div>
-      <div class="forecast-item__info">
-      <i class="wi ${applyIcon(day.weather[0].icon)}"></i>
-      <span class="degrees">${Math.round(day.temp.day)}
-      <i class="wi wi-degrees"></i></span></div>`;
-    FORECAST.appendChild(dayBlock);
-  });
-}
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
-
 
 const currentDate = new Date(response.data.dt * 1000);
 const day = currentDate.getDate();
@@ -158,3 +142,4 @@ function SavingCitiesStorage(city){
 
 initPage();
 
+  }
