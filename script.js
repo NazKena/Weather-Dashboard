@@ -1,3 +1,4 @@
+const submitBtn = document.getElementById('add')
 const CURRENT_LOCATION = document.getElementsByClassName('city')[0];
 const CURRENT_TEMP = document.getElementsByClassName('add')[0];
 const FORECAST = document.getElementsByClassName('forecast')[0];
@@ -9,6 +10,13 @@ const apiKey = "4e4c78c92a3432f093e8952d80ccf977";
 const base =
 'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=4e4c78c92a3432f093e8952d80ccf977'
 // here we are calling th api //
+
+function cityName(event){
+  event.preventDefault()
+  const cityValue = document.getElementById("city").value
+  console.log(cityValue)
+  getForecast (cityValue)
+}
 
 
 function getWeatherData() {
@@ -34,14 +42,16 @@ function getForecast(city){
         }
       })
       .then(function (data) {
-        currentForecast(data);
-        fiveDayforecast(data);
-        if("" === $("#search-input").val()){
-          return 
-        }else{
-          SavingCitiesStorage(city)
-        }
-        displayCitySearch (city);
+        console.log(data)
+
+        // currentForecast(data);
+        // fiveDayforecast(data);
+        // if("" === $("#search-input").val()){
+        //   return 
+        // }else{
+        //   SavingCitiesStorage(city)
+        // }
+        // displayCitySearch (city);
       });
   }
 
@@ -73,11 +83,12 @@ currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%";
 currentWindEl.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH";
 
 
-let cityID = response.data.id;
-let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey;
-axios.get(forecastQueryURL)
-    .then(function (response) {
-        fivedayEl.classList.remove("d-none");
+// let cityID = response.data.id;
+// let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey;
+// axios.get(forecastQueryURL)
+//     .then(function (response)){
+//         fivedayEl.classList.remove("d-none");
+    }
         
         
 function forecast(cityid){
@@ -130,16 +141,6 @@ function SavingCitiesStorage(city){
       cityList.innerHTML = getCity[i]
       cityList.onclick=cityClick
     }
-  }}
-  }
-    );
-
-
-    renderSearchHistory();
-    if (searchHistory.length > 0) {
-        getWeather(searchHistory[searchHistory.length - 1]);
-    }
-
-initPage();
-
-  }
+    }}
+  
+submitBtn.addEventListener("click",cityName)    
