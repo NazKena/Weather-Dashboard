@@ -74,6 +74,15 @@ renderData = (location, forecast) => {
   });
 }
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
+
+
+let cityID = response.data.id;
+let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey;
+axios.get(forecastQueryURL)
+    .then(function (response) {
+        fivedayEl.classList.remove("d-none");
+        
+        
 function forecast(cityid){
     var dayover= false;
     var queryforcastURL="https://api.openweathermap.org/data/2.5/forecast?id="+cityid+"&appid="+APIKey;
@@ -94,9 +103,9 @@ function forecast(cityid){
             $("#fImg"+i).html("<img src="+iconurl+">");
             $("#fTemp"+i).html(tempF+"&#8457");
             $("#fHumidity"+i).html(humidity+"%");
-        }
+          }
         
-    });
+        })
 }
 
 // Here we have local storage //
@@ -124,7 +133,14 @@ function SavingCitiesStorage(city){
       cityList.innerHTML = getCity[i]
       cityList.onclick=cityClick
     }
+  }}
   }
-  }
+    );
 
 
+    renderSearchHistory();
+    if (searchHistory.length > 0) {
+        getWeather(searchHistory[searchHistory.length - 1]);
+    }
+
+initPage();
