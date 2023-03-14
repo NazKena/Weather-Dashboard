@@ -1,11 +1,8 @@
-
 const apiKey = "4e4c78c92a3432f093e8952d80ccf977";
 // here we have the api URL //
 
 const base =
-` https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}4e4c78c92a3432f093e8952d80ccf977
-`;
-
+'https://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=4e4c78c92a3432f093e8952d80ccf977'
 // here we are calling th api //
 
 function getForecast(city){
@@ -30,7 +27,6 @@ function getForecast(city){
         displayCitySearch (city);
       });
   }
-
 
 
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
@@ -86,3 +82,5 @@ function SavingCitiesStorage(city){
     }
   }
   }
+
+
