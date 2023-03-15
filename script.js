@@ -43,15 +43,6 @@ function getForecast(city){
       })
       .then(function (data) {
         console.log(data)
-
-        // currentForecast(data);
-        // fiveDayforecast(data);
-        // if("" === $("#search-input").val()){
-        //   return 
-        // }else{
-        //   SavingCitiesStorage(city)
-        // }
-        // displayCitySearch (city);
       });
   }
 
@@ -81,14 +72,7 @@ currentPicEl.setAttribute("alt", response.data.weather[0].description);
 currentTempEl.innerHTML = "Temperature: " + k2f(response.data.main.temp) + " &#176F";
 currentHumidityEl.innerHTML = "Humidity: " + response.data.main.humidity + "%";
 currentWindEl.innerHTML = "Wind Speed: " + response.data.wind.speed + " MPH";
-
-
-// let cityID = response.data.id;
-// let forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&appid=" + APIKey;
-// axios.get(forecastQueryURL)
-//     .then(function (response)){
-//         fivedayEl.classList.remove("d-none");
-    }
+}
         
         
 function forecast(cityid){
