@@ -18,7 +18,6 @@ function cityName(event){
   getForecast (cityValue)
 }
 
-
 function getWeatherData() {
   let headers = new Headers();
 
@@ -57,7 +56,6 @@ renderData = (location, forecast) => {
 
   CURRENT_LOCATION.innerHTML = widgetHeader;
 
-  // Here we have the forecast for each day // 
 
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
 
