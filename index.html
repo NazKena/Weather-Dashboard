@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css"></link>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
 </head>
 <body>
     <h1>Weather Dashboard</h1>
@@ -22,10 +24,52 @@
 
 
     <!--5 day weather forecast-->
-<div class="container">
-    <div id="forecast">
-        <h3>5 Day Weather Forecast</h3>
-</section>
+    <div class="container">
+      <div class="content">
+        <h2>5-Day Forecast:</h2>
+        <div class="columns">
+          <div class="column card">
+            <div id="day1" class="card-content">
+              <h3 id="date1" class="has-text-white"></h3>
+              <div id="icon1"></div>
+              <h4 id="temp1" class="has-text-white"></h4>
+              <h4 id="hum1" class="has-text-white"></h4>
+            </div>
+          </div>
+          <div class="column card">
+            <div id="day2" class="card-content">
+              <h3 id="date2" class="has-text-white"></h3>
+              <div id="icon2"></div>
+              <h4 id="temp2" class="has-text-white"></h4>
+              <h4 id="hum2" class="has-text-white"></h4>
+            </div>
+          </div>
+          <div class="column card">
+            <div id="day3" class="card-content">
+              <h3 id="date3" class="has-text-white"></h3>
+              <div id="icon3"></div>
+              <h4 id="temp3" class="has-text-white"></h4>
+              <h4 id="hum3" class="has-text-white"></h4>
+            </div>
+          </div>
+          <div class="column card">
+            <div id="day4" class="card-content">
+              <h3 id="date4" class="has-text-white"></h3>
+              <div id="icon4"></div>
+              <h4 id="temp4" class="has-text-white"></h4>
+              <h4 id="hum4" class="has-text-white"></h4>
+            </div>
+          </div>
+          <div class="column card">
+            <div id="day5" class="card-content">
+              <h3 id="date5" class="has-text-white"></h3>
+              <div id="icon5"></div>
+              <h4 id="temp5" class="has-text-white"></h4>
+              <h4 id="hum5" class="has-text-white"></h4>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <br>
       <!-- This is where you will clear your history-->
@@ -37,6 +81,10 @@
     </div>
 </div>
     <script src="./script.js"></script>
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+  ></script>
 
 </body>
 </html>

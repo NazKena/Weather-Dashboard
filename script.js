@@ -37,7 +37,6 @@ function getWeatherData() {
 
 let NowMoment = moment().format("l");
 
-
 let day1 = moment().add(1, "days").format("l");
 let day2 = moment().add(2, "days").format("l");
 let day3 = moment().add(3, "days").format("l");
@@ -143,13 +142,6 @@ function SavingCitiesStorage(city){
     localStorage.setItem('city', JSON.stringify(citySearched))
     }
   }
-  
-  $("#submit").on("click", (e) => {
-    e.preventDefault();
-    getCity();
-    search();
-    $("#city-input").val("");
-    listCities();
-  });
+ 
   
 submitBtn.addEventListener("click",cityName)    
