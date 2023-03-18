@@ -1,24 +1,32 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+#info-section {
+    padding-top: 15px;
+  }
+  
+  
+  .current-city-data {
+    min-height: 300px;
+  }
+  
+  
+  tr {
+    margin: 5px;
+  }
+  
+  .card {
+    background-color: pink;
+    margin: 6px;
+    min-height: 100px;
+  }
 
-h1 {
-    text-align: center;
-}
-
-body
-{
-    background: #6ea7ca;
-}
-
-.container {  
-    width: 400px;
-    margin: 60px auto;
-    padding: 10px;
-}
-
+  
+  .title {
+    color: #fff;
+  }
+  
+  #submit {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
 
 
