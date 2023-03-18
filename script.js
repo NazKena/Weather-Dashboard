@@ -1,3 +1,6 @@
+
+
+
 const submitBtn = document.getElementById('add')
 const CURRENT_LOCATION = document.getElementsByClassName('city')[0];
 const CURRENT_TEMP = document.getElementsByClassName('add')[0];
@@ -28,6 +31,18 @@ function getWeatherData() {
     return data.json();
   });
 }
+
+
+// Here we are able to get tha date as well as the 5 days for the forecast
+
+let NowMoment = moment().format("l");
+
+
+let day1 = moment().add(1, "days").format("l");
+let day2 = moment().add(2, "days").format("l");
+let day3 = moment().add(3, "days").format("l");
+let day4 = moment().add(4, "days").format("l");
+let day5 = moment().add(5, "days").format("l");
 
 // Here we are searching the function for the inputed city name
 function search() {
