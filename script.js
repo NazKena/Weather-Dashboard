@@ -29,32 +29,49 @@ function getWeatherData() {
   });
 }
 
-function getForecast(city){
-    var apiUrl =
-      "https://api.openweathermap.org/data/2.5/forecast?q=" +
-      city +
-      "&appid=" + apiKey + "&units=imperial";
-      fetch(apiUrl)
-      .then(function (response) {
-        if (response.ok) {
-          return response.json();
-        }
-      })
-      .then(function (data) {
-        console.log(data)
-      });
-  }
+// Here we are searching the function for the inputed city name
+function search() {
+      
+  let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=4e4c78c92a3432f093e8952d80ccf977";
+  let coords = [];
 
-renderData = (location, forecast) => {
-  const currentWeather = forecast[0].weather[0];
-  const widgetHeader =
-  `<h1>${location}</h1><small>${currentWeather.description}</small>`;
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    
+    coords.push(response.coord.lat);
+    coords.push(response.coord.lon);
+    let cityName = response.name;
+    let cityCond = response.weather[0].description.toUpperCase();
+    let cityTemp = response.main.temp;
+    let cityHum = response.main.humidity;
+    let cityWind = response.wind.speed;
+    let icon = response.weather[0].icon;
+    $("#icon").html(
+      `<img src="http://openweathermap.org/img/wn/${icon}@2x.png">`
+    );
+    $("#city-name").html(cityName + " " + "(" + NowMoment + ")");
+    $("#city-cond").text("Current Conditions: " + cityCond);
+    $("#temp").text("Current Temp (F): " + cityTemp.toFixed(1));
+    $("#humidity").text("Humidity: " + cityHum + "%");
+    $("#wind-speed").text("Wind Speed: " + cityWind + "mph");
+    $("#date1").text(day1);
+    $("#date2").text(day2);
+    $("#date3").text(day3);
+    $("#date4").text(day4);
+    $("#date5").text(day5);
 
-  CURRENT_TEMP.innerHTML =
-  `<i class="wi ${applyIcon(currentWeather.icon)}"></i>
-  ${Math.round(forecast[0].temp.day)} <i class="wi wi-degrees"></i>`;
+    getUV(response.coord.lat, response.coord.lon);
+  }).fail(function (){
+    alert("Could not get data")
+  });
 
-  CURRENT_LOCATION.innerHTML = widgetHeader;
+  // CURRENT_TEMP.innerHTML =
+  // `<i class="wi ${applyIcon(currentWeather.icon)}"></i>
+  // ${Math.round(forecast[0].temp.day)} <i class="wi wi-degrees"></i>`;
+
+  // CURRENT_LOCATION.innerHTML = widgetHeader;
 
 
 // Here we are displaying code for displaying the 5 days weather forecase for each city //
